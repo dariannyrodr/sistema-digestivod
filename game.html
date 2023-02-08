@@ -1,0 +1,138 @@
+<style>
+  
+
+
+      .app{
+    width: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}
+.card{
+    height: 150px;
+    width: 150px;
+    border: 1px solid #ccc;
+    transform-style: preserve-3d;
+    transition: .7s;
+}
+
+.sides{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    font-size: 2em;
+    display: grid;
+    place-items: center;
+    backface-visibility: hidden;
+
+}
+.front{
+    background-color: rgb(167, 161, 161);
+}
+.back{
+    background: linear-gradient(0deg, rgba(163,16,29,1) 0%, rgba(11,40,87,1) 100%); 
+    transform: rotateY(180deg);
+}
+
+.btn{
+    padding: 1em 1.5em;
+    color: rgb(221, 216, 216);
+    background-color: rgb(160, 160, 154);
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    margin-left: 260px;
+    
+}
+
+.rotate{
+    transform: rotateY(180deg);
+}
+
+
+
+</style>
+
+
+<!--JUEGO-->
+
+<div class="app" id="app"></div>
+<p id="p">🍪El juego consiste en encontrar los alimentos iguales.🍪</p>
+    <button class="btn" id="btn">Jugar De Nuevo</button>
+</div>
+
+
+<script>
+    const app = document.getElementById('app')
+let templateHTML = '';
+let ArrayCard = []
+let ArrayFruit = []
+const btn = document.getElementById('btn')
+let listFruit = ['🥗', '🥝', '🍝', '🧃', '🍝', '🌮', '🥗', '🫐', '🫐', '🧃', '🥝', '🌮']
+let count=0;
+console.log(ArrayCard.length)
+listFruit.forEach(fruit=>(
+    templateHTML+=`
+    <div class="card">
+        <div class="sides front"></div>
+        <div class="sides back">${fruit}</div>
+    </div>
+    `
+))
+
+app.innerHTML=templateHTML
+
+app.addEventListener('click',(e)=>{
+    let value = e.target.matches('.front')
+
+    if(value && ArrayCard.length<=2){
+      console.log(ArrayCard)
+       if(count<=1){
+          let ElementCard = e.target.parentElement
+        let fruit = ElementCard.children[1].textContent
+        
+        ElementCard.classList.add('rotate')
+        ArrayCard=[...ArrayCard,ElementCard]
+        ArrayFruit=[...ArrayFruit,fruit]
+
+        VerificationsCards();
+       }
+    }
+})
+
+const VerificationsCards = ()=>{
+    if(ArrayCard.length>1){
+        if(ArrayFruit[0] === ArrayFruit[1]){
+            ArrayCard=""
+            ArrayFruit=""
+        }else{
+            setTimeout(() => {
+                ArrayCard[0].classList.remove('rotate')
+                ArrayCard[1].classList.remove('rotate')
+                ArrayCard=""
+                ArrayFruit=""
+            }, 800);
+        }
+    }
+}
+
+
+const ramdon = () => {
+    for (let index = app.children.length; index >= 0; index--) {
+      app.appendChild(app.children[(Math.random() * index) | 0]);
+    }
+  };
+
+const cards = document.querySelectorAll('.card')
+
+  btn.addEventListener('click',()=>{
+    ramdon();
+
+    for(let index of cards){
+        index.classList.remove('rotate')
+    }
+  })
+  {}
+</script>

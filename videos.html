@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Responsive Video Playlist Tutorial</title>
+
+   <!-- custom css file link  -->
+
+</head>
+<body>
+   
+    <div class="nose">
+
+    
+<div class="container">
+
+   <div class="main-video-container">
+      <video src="images/vid-1.mp4" loop controls class="main-video" poster="./img/video1.jpeg"></video>
+      <h3 class="main-vid-title">El Sistema Digestivo-Qué es la Digestión</h3>
+   </div>
+
+   <div class="video-list-container">
+
+      <div class="list active">
+         <video src="images/vid-1.mp4" class="list-video" poster="./img/video1.jpeg"></video>
+         <h3 class="list-title">El Sistema Digestivo-Qué es la Digestión</h3>
+      </div>
+
+      <div class="list">
+         <video src="images/vid-2.mp4" class="list-video" poster="./img/video2.jpeg"></video>
+         <h3 class="list-title">El sistema digestivo del cuerpo humano para niños</h3>
+      </div>
+
+      <div class="list">
+         <video src="images/vid-3.mp4" class="list-video" poster="./img/video3.jpeg"></video>
+         <h3 class="list-title">El viaje de los alimentos a través de tu cuerpo</h3>
+      </div>
+
+      <div class="list">
+         <video src="images/vid-4.mp4" class="list-video" poster="./img/nose.jpeg"></video>
+         <h3 class="list-title">Alimentación saludable para niños - Hidratos de carbono, grasas, proteínas, vitaminas...</h3>
+      </div>
+
+   
+
+      <div class="list">
+         <video src="images/vid-6.mp4" class="list-video" poster="./img/door.jpeg"></video>
+         <h3 class="list-title">¿Cuánto Sabes Sobre el "APARATO DIGESTIVO"? Test</h3>
+      </div>
+
+      <div class="list">
+         <video src="images/vid-7.mp4" class="list-video" poster="./img/nose224.jpeg"></video>
+         <h3 class="list-title">¿QUÉ LE PASA A TU CUERPO SI NO COMES? | Draw My Life</h3>
+      </div>
+
+      <div class="list">
+         <video src="images/vid-8.mp4" class="list-video" poster="./img/cancion.jpeg"></video>
+         <h3 class="list-title">Una Comida Sana|Hábitos Saludables|Pinkfong Canciones Infantiles</h3>
+      </div>
+
+
+
+   </div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- custom js file link  -->
+<script>
+let videoList = document.querySelectorAll('.video-list-container .list');
+
+videoList.forEach(vid =>{
+   vid.onclick = () =>{
+      videoList.forEach(remove =>{remove.classList.remove('active')});
+      vid.classList.add('active');
+      let src = vid.querySelector('.list-video').src;
+      let title = vid.querySelector('.list-title').innerHTML;
+      document.querySelector('.main-video-container .main-video').src = src;
+      document.querySelector('.main-video-container .main-video').play();
+      document.querySelector('.main-video-container .main-vid-title').innerHTML = title;
+   };
+});
+
+
+
+</script>
+
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+   font-family: 'Poppins', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; border:none;
+   text-decoration: none;
+   text-transform: capitalize;
+   
+}
+
+
+
+
+
+
+.container{
+   max-width: 1200px;
+   margin:100px auto;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: flex-start;
+   gap:20px;
+    
+   
+ 
+}
+
+.container .main-video-container{
+   flex:1 1 700px;
+   border-radius: 5px;
+   box-shadow: 0 5px 15px rgba(0,0,0,.1);
+   background-color: #fff;
+   padding:15px;
+   
+}
+
+.container .main-video-container .main-video{
+   margin-bottom: 7px;
+   border-radius: 5px;
+   width: 100%;
+  
+}
+
+.container .main-video-container .main-vid-title{
+   font-size: 20px;
+   color:#444;
+
+}
+
+.container .video-list-container{
+   flex:1 1 350px;
+   height: 485px;
+   overflow-y: scroll;
+   border-radius: 5px;
+   box-shadow: 0 5px 15px rgba(0,0,0,.1);
+   background-color: #fff;
+   padding:15px;
+   
+}
+
+.container .video-list-container::-webkit-scrollbar{
+   width: 10px;
+   
+   
+}
+
+.container .video-list-container::-webkit-scrollbar-track{
+   background-color: #fff;
+   border-radius: 5px;
+   
+}
+
+.container .video-list-container::-webkit-scrollbar-thumb{
+   background:linear-gradient(transparent, #7e326b) ;
+background-color: #1b1b1b80;
+   border-radius: 5px;
+
+}
+
+.container .video-list-container .list{
+   display: flex;
+   align-items: center;
+   gap:15px;
+   padding:10px;
+   background-color: #eee;
+   cursor: pointer;
+   border-radius: 5px;
+   margin-bottom: 10px;
+   
+   
+}
+
+.container .video-list-container .list:last-child{
+   margin-bottom: 0;
+   
+}
+
+.container .video-list-container .list.active{
+   background-color: #444;
+   
+}
+
+.container .video-list-container .list.active .list-title{
+   color:#fff;
+}
+
+.container .video-list-container .list .list-video{
+   width: 100px;
+   border-radius: 5px;
+   
+}
+
+.container .video-list-container .list .list-title{
+   font-size: 17px;
+   color:#444;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:1200px){
+
+   .container{
+      margin:0;
+   }
+
+}
+
+@media (max-width:450px){
+
+   .container .main-video-container .main-vid-title{
+      font-size: 15px;
+      text-align: center;
+      
+   }
+
+   .container .video-list-container .list{
+      flex-flow: column;
+      gap:10px;
+   }
+
+   .container .video-list-container .list .list-video{
+      width: 100%;
+   }
+
+   .container .video-list-container .list .list-title{
+      font-size: 15px;
+      text-align: center;
+   }
+
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
